@@ -1,0 +1,2 @@
+module WowgramHelper
+end

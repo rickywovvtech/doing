@@ -1,0 +1,14 @@
+<h3>User: <%= User.find(@wowgram.user_id).name.capitalize%></h3>
+<h3><%= button_to "Follow", {:controller=>'wowgrams',:action=>'follow',:id=>@wowgram.user_id},:method=>:post%>
+<h3>Description: <%=@wowgram.description%></h3>
+<% @comment.each do |comment| %>
+    <p><%= comment.comment %></p>
+<% end %>
+
+<form action='/users/wowgrams/submit_comment' method='post' >
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+<%= hidden_field_tag :id, @wowgram_id %>
+<label for='uname'>Add comment</label><br />
+<input type='text' placeholder='enter body' name='uname' required >
+<button type='submit'>Comment</button>
+</form>

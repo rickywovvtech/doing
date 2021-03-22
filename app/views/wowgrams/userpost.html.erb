@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<% if (User.find(@user_id).name).present? %>
+   <h3> User: <%= link_to "#{User.find(@user_id).name.capitalize}", userpost_wowgrams_path(@user_id) %></h3>
+<%else%>
+   <h3> User: <%= link_to "No UserName", userpost_wowgrams_path(@user_id) %></h3>
+<%end%>
+<!--<h3><%= button_to "Follow", follow_wowgrams_path(@user_id)%></h3>-->
+<h3><%= button_to "Follow", {:controller=>'wowgrams',:action=>'follow',:id=>@user_id},:method=>:post%>
+<table>
+ <thead>
+  <tr>
+   <th> Description</th>
+   <th> Picture</th>
+   <th> BODY</th>
+  </tr>
+ </thead>
+ <tbody>
+    <%@wowgram.each do |wowgram|%>
+        <tr>
+        <td><%= wowgram.description %></td>
+        <% if (wowgram.picture).present? %>
+         <td><%= image_tag(wowgram.picture.url, size:'210') %></td>
+         <%else%>
+         <td>Picture not found</td>
+        <%end%>
+        <td><%= wowgram.body %></td>
+        <td><%= link_to 'Show' , wowgram_path(wowgram) %></td>
+        <td><%= link_to 'Add Comment' ,comment_wowgrams_path(wowgram) %></td>
+        </tr>
+     <%end%>
+ </tbody>
+</table
+

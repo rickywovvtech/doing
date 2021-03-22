@@ -1,0 +1,24 @@
+<h3> Show action<h3>
+
+<p>
+<strong>User:</strong>
+<%= User.find(@wowgram.user_id).name.capitalize%>
+<h3><%= button_to "Follow", {:controller=>'wowgrams',:action=>'follow',:id=>@wowgram.user_id},:method=>:post%>
+</p>
+<p>
+<strong>Description:</strong>
+<%= @wowgram.description%>
+</p>
+
+<p>
+<% if (@wowgram.picture).present? %>
+<%= image_tag(@wowgram.picture.url, size:'210') %>
+<%else%>
+Picture not found
+<%end%>
+</p>
+
+<p>
+<strong>BODY:</strong>
+<%= @wowgram.body%>
+</p>

@@ -1,0 +1,47 @@
+<h3> Testing form</h3>
+<!--<form action='/users/wowgrams' method='post' >
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+<p><label for='desc'>Description</label> <br />
+<input type='text' placeholder='enter text' name='desc' required >
+</p>
+<p>
+<label for='uname'>Body</label><br />
+<input type='text' placeholder='enter body' name='uname' required >
+</p>
+<button type='submit'>Create</button>
+</form>-->
+
+
+<%= form_with(model: wowgram, local: true) do |form| %>
+    <% if wowgram.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(wowgram.errors.count, "error") %> prohibited this wow from being saved:</h2>
+
+      <ul>
+        <% wowgram.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= form.label :description %>
+      <%= form.text_field :description %>
+    </div>
+
+    <div class="field">
+      <%= form.label :picture %>
+      <%= form.file_field :picture %>
+    </div>
+
+    <div class="field">
+      <%= form.label "BODY" %>
+      <%= form.text_field :body %>
+    </div>
+  
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+  
+

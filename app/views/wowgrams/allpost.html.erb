@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+<table>
+ <thead>
+  <tr>
+  <th> User</th>
+   <th> Description</th>
+   <th> Picture</th>
+   <th> BODY</th>
+  </tr>
+ </thead>
+ <tbody>
+    <%@wowgram.each do |wowgram|%>
+        <tr>
+        <% if (User.find(wowgram.user_id).name).present? %>
+             <td><%= link_to "#{User.find(wowgram.user_id).name.capitalize}", userpost_wowgrams_path(wowgram.user_id) %></td>
+        <%else%>
+             <td><%= link_to "No UserName", userpost_wowgrams_path(wowgram.user_id) %></td>
+        <%end%>
+        <td><%= wowgram.description %></td>
+        <% if (wowgram.picture).present? %>
+         <td><%= image_tag(wowgram.picture.url, size:'210') %></td>
+         <%else%>
+         <td>Picture not found</td>
+        <%end%>
+        <td><%= wowgram.body %></td>
+        <td><%= link_to 'Show' , wowgram_path(wowgram) %></td>
+        <td><%= link_to 'Add Comment' ,comment_wowgrams_path(wowgram) %></td>
+        </tr>
+     <%end%>
+ </tbody>
+</table
+
